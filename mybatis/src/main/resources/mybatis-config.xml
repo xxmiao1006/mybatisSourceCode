@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--默认为true 意思就是默认生成cacheExecutor 如果设置成false 则生成SipmpleExecutor-->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- <setting name="aggressiveLazyLoading" value="false"/> -->
+    </settings>
+    <typeAliases>
+        <typeAlias alias="role" type="com.mytest.pojo.Role"/>
+    </typeAliases>
+    <typeHandlers>
+        <typeHandler jdbcType="VARCHAR" javaType="string" handler="com.mytest.handler.MyStringHandler"/>
+    </typeHandlers>
+    <!-- 定义数据库的信息，默认使用development数据库构建环境 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 定义映射器 -->
+    <mappers>
+        <mapper resource="mapper\RoleMapper.xml"/>
+
+        <!--使用下面这些方法的时候要注意，一定要在打包的时候配置将xml打包到target目录下
+        解析的时候会默认去加载一下com/mytest/mapper/RoleMapper.Xml
+        或者直接使用注解在接口上编写sql
+        -->
+        <!--<mapper class="com.mytest.mapper.RoleMapper"/>-->
+        <!--<package name="com.mytest.mapper"/>-->
+    </mappers>
+
+</configuration>

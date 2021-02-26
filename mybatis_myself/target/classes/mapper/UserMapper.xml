@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xuemiao.mybatis_myself.mapper.UserMapper">
+
+    <select id="selectByPrimaryKey" resultType="com.xuemiao.mybatis_myself.pojo.User">
+		select
+		id, user_name userName, real_name realName
+		from t_user
+		where id =?
+	</select>
+
+    <select id="selectAll" resultType="com.xuemiao.mybatis_myself.pojo.User">
+		select
+		id, userName, realName
+		from t_user
+	</select>
+
+
+
+</mapper>
